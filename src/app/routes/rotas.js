@@ -1,8 +1,7 @@
+const userController = require('../controllers/userController');
+
 module.exports = (app) => {
-    app.post('/user', function(request, response) {
-        const {
-            name
-        } = request.body;
-        
-    })
+    app.post('/user', userController.create);
+
+    app.get('/user', userController.index);
 }
