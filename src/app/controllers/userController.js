@@ -21,5 +21,20 @@ module.exports = {
     index: async (req, resp) => {
         const userList = await User.index();
         return resp.json(userList);
-    } 
+    },
+    
+    delete: async(req, resp) => {
+        const idParam = req.params.id;
+
+        const user = await User.findById(idParam);
+
+        try{
+            await user.delete();
+
+            resp.status(200).send();
+
+        }catch(erro) {
+            resp.status(500).json({ erro: erro.message });
+        }
+    }
 }

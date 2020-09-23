@@ -15,6 +15,19 @@ module.exports = {
 
     index: async() => {
         return await db.select().table('users');
-    }
+    },
 
+    findById: async id => {
+        const idUser = await db('users').select().where({id: id});
+        return idUser;
+    },
+
+    delete: async user => {
+        // if(user){
+        //     console.log( user);
+
+        // }
+        const apagar = await db('users').del().where('id', user.id);
+        return apagar;
+    }
 }
